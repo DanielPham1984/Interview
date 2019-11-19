@@ -1,0 +1,88 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style>
+		table {
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+		
+		th, td {
+		  padding: 8px;
+		  text-align: left;
+		  border-bottom: 1px solid #ddd;
+		}
+		tr:hover {background-color:#f5f5f5;}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="block">
+	    <label>Choose date range</label>
+	  
+	</div>
+	
+    <form action="#" th:action="@{/}" th:object="${datepicker}" method="post">
+    	<p>Start Date <input  type="date"  th:field="*{startDate}"/></p>
+    	<p>End Date <input  type="date"  th:field="*{endDate}"/></p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+
+	
+	<table class="table table-bordered table-striped">
+       <thead>
+	      <tr>
+	        <th>Station Name</th>
+	        <th>Province</th>
+	        <th>Date</th>
+	        <th>Mean_Temp</th>
+	      </tr>
+  	    </thead>
+        <tbody>
+         <tr th:each="ClimateObj : ${climateObjs}">
+            <td class="nr" th:text="${ClimateObj.stationName}"></td>
+            <td th:text="${ClimateObj.province}"></td>
+            <td th:text="${ClimateObj.date}"></td>
+            <td>
+              <button type="button" class="use-address" th:text="${ClimateObj.meanTemp}"/></button>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+      <script>
+			 $(".use-address").click(function() {
+			    var $row = $(this).closest("tr");    // Find the row
+			    var $text = $row.find(".nr").text(); // Find the text
+			    
+			    
+				var requestObj = {};
+				requestObj['stationName'] = $text;
+			    $.ajax({
+			        type: "POST",
+			        contentType: "application/json",
+			        url: "/detail",
+			        data: JSON.stringify(requestObj),
+			        dataType: 'json',
+			        cache: false,
+			        timeout: 60000,
+			        success: function (data) {
+			
+			            alert(JSON.stringify(data, null, 4));
+			
+			            console.log("SUCCESS : ", data);
+			            $("#btn-search").prop("disabled", false);
+			
+			        },
+			        error: function (e) {
+			
+			            alert(e);
+			            console.log("ERROR : ", e);
+			            $("#btn-search").prop("disabled", false);
+			
+			        }
+			    });
+			});
+      </script>
+</body>
+</html>
