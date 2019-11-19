@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 public class ErrorController {
-	   final String ERROR_VIEW = "error";
+	   final public static String ERROR_VIEW = "error";
 	   @RequestMapping(value = "errors", method = RequestMethod.GET)
 	    public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
 	        ModelAndView errorPage = new ModelAndView(ERROR_VIEW);
