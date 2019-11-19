@@ -16,9 +16,8 @@ import org.springframework.core.io.Resource;
 import com.centralbank.main.entity.ClimateObj;
 
 public class Utils {
-	 public static ClimateObj getDetailBaseOnMeanTemp(String name) throws IOException {
-	    	ClimateObj body = new ClimateObj();
-	    	
+	public static ClimateObj getDetailBaseOnMeanTemp(String name) throws IOException {
+	    	ClimateObj body = new ClimateObj();    	
 	      	Resource resource = new ClassPathResource("csv/eng-climate-summary.csv");
 	        InputStream input = resource.getInputStream();	
 	    	String line = "";
