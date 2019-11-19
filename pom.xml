@@ -15,11 +15,17 @@
 	<description>Central Bank Coding Interview</description>
 
 	<properties>
+		<!--All the version should be here but I am so busy to put it here for now An Pham  -->
 		<java.version>1.8</java.version>
-		
+
 	</properties>
 
 	<dependencies>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-collections4</artifactId>
+		    <version>4.4</version>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
