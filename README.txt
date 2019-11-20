@@ -32,7 +32,6 @@ Then import existing spring boot project to eclipse
 
 
 If you want to compile and run from Eclipse the do the following otherwise go to Deploy section.
-After you import run mvnw.cmd if windows otherwise run mvnw.sh 
 Now you can right click on the InterviewApplication and choose Run As > Spring Boot As
 
 
